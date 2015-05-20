@@ -36,6 +36,8 @@
   [[BDUIViewUpdateQueue shared] updateView:self.tableView block:^{
     [self _actuallyDoUpdateWithOp:op]; // try not wrapping it with BDUIViewUpdateQueue here. Crash fest!
   }];
+  
+//  [self _actuallyDoUpdateWithOp:op]; // try not wrapping it with BDUIViewUpdateQueue here = Bug fest!
 }
 
 #pragma mark -
@@ -98,8 +100,6 @@
   return cell;
 }
 
-
-
 @end
 
 
@@ -109,9 +109,21 @@
   self = [super init];
   if (self) {
     _cardinal = cardinal;
+    self.queuePriority = NSOperationQueuePriorityVeryHigh;
   }
   return self;
 }
+
+- (BOOL)isAsynchronous
+{
+  return YES;
+}
+
+- (BOOL)isConcurrent
+{
+  return YES;
+}
+
 - (void)main
 {
   _result = (self.cardinal) * (arc4random_uniform(31.0) + 5);
