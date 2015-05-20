@@ -1,0 +1,14 @@
+PODS:
+  - BDUIViewUpdateQueue (0.1.0)
+
+DEPENDENCIES:
+  - BDUIViewUpdateQueue (from `../`)
+
+EXTERNAL SOURCES:
+  BDUIViewUpdateQueue:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BDUIViewUpdateQueue: 2d2f22f46b18e65fcb8fe105227230de9a2256b2
+
+COCOAPODS: 0.36.4
