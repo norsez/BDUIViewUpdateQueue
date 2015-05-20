@@ -9,11 +9,11 @@
 
 A singleton class facilitates queuing on updating UITableView, UICollectionView, and other UIView based classes.
 
-When using UITableView or UICollectionView, asynchronous updating of your datasource and your view can be difficult without proper queuing. Sometimes upating these views can even crash your app (NSInternalInconsistencyException dreads). 
+When using UITableView or UICollectionView, asynchronous updating of your datasource and your view can be difficult without proper queuing. Naively updating the tableView or collectionView asynchronously often results in NSInternalInconsistencyException or UITableView endupdates creash. `BDUIViewUpdateQueue` helps you queue up these updates to prevent these problems.
 
 ## How it works
 
-`BDUIViewUpdateQueue` uses GCD (`dispatch_queue_t`) to lock your view to a serial queue, then execute your block in the main queue. That way datasource will always sync up with the state of your UITableView or UICollectionView. Other views will also work. 
+`BDUIViewUpdateQueue` uses Grand Central Dispatch (`dispatch_queue_t`) to lock your view to a serial queue, then execute your block in the main queue. That way datasource will always sync up with the state of your UITableView or UICollectionView. Other views will also work. 
 
 ## How to use
 
