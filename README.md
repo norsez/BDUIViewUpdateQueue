@@ -23,7 +23,22 @@ There are a few variations of lock and update `BDUIViewUpdateQueue` provides:
 - `-updateView:block:delay:` delays the input time interval before adding inputs blocks into a serial queue associated with the input view, then executes the blocks in sequeuence in the main queue
 - `updateView:block:waitUntil:` adds input blocks into a serial queue associated with the input view, periodically executes the waitUntil block until it returns true, then executes the corresponding block in the main queue
 
+`BDUIViewUpdateQueue` is a singleton class. So use `+shared` to get an instance. 
 
+```
+[BDUIViewUpdateQueue shared];
+```
+
+`BDUIViewUpdateQueue` requires a `UIView` as an input in order to associate a serial queue with it. This means that we can use `BDUIViewUpdateQueue` to queue updates for as many `UIView`s as you want. `BDUIViewUpdateQueue` keeps track of `dispatch_queue_t` structs for you.
+
+Inside the input block, that's where you want to update your datasource and your view. Like so…
+
+```
+[[BDUIViewUpdateQueue shared] updateView:self.tableView block:^{
+self.items = @[@"Hello"];
+[self.tableView insertIndexPaths@[[NSIndexPath indexPathWithRow:0 section:0 withRowAnimation:UITableViewRowAnimationBottom]];
+}];
+```
 
 ## Usage
 
