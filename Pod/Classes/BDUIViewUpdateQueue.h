@@ -22,9 +22,8 @@
 /**
  delay seconds before executing the input block in the UIView's serial queue.
  The block should contains both updating of the datasource and UIView update animation.
- @deprecated use waitUntilTrueBlock version instead.
  */
-- (void)updateView:(UIView*)view block:(void(^)(void))updateBlock delay:(NSTimeInterval)delayInSeconds __deprecated;
+- (void)updateView:(UIView*)view block:(void(^)(void))updateBlock delay:(NSTimeInterval)delayInSeconds;
 
 /**
  Hold off on execute the update block until waitUntilTrueBlock returns YES.

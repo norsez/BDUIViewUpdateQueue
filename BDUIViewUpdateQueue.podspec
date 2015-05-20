@@ -10,21 +10,21 @@
 Pod::Spec.new do |s|
   s.name             = "BDUIViewUpdateQueue"
   s.version          = "0.1.0"
-  s.summary          = "A short description of BDUIViewUpdateQueue."
+  s.summary          = "A class helps queuing asynchronous updates of UITableView (or UICollectionView)."
   s.description      = <<-DESC
-                       An optional longer description of BDUIViewUpdateQueue
+                      When using UITableView or UICollectionView, asynchronous updating of your datasource and your view can be difficult without proper queuing. Sometimes upating these views can even crash your app (NSInternalInconsistencyException dreads). 
 
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+`BDUIViewUpdateQueue` uses GCD (`dispatch_queue_t`) to lock your view to a serial queue, then execute your block in the main queue. That way datasource will always sync up with the state of your UITableView or UICollectionView. Other views will also work.
+
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/BDUIViewUpdateQueue"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/norsez/BDUIViewUpdateQueue"
+
   s.license          = 'MIT'
   s.author           = { "Norsez Orankijanan" => "norsez@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/BDUIViewUpdateQueue.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/norsez/BDUIViewUpdateQueue.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '7.0'
+
+  s.platform     = :ios, '6.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
@@ -32,7 +32,4 @@ Pod::Spec.new do |s|
     'BDUIViewUpdateQueue' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

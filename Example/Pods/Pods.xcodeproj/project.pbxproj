@@ -11,6 +11,8 @@
 		9EFDF37680676839AB21F116 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92ADD29D9603838958D296A /* Foundation.framework */; };
 		C662DBFE7A29BE2BBE5A3034 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92ADD29D9603838958D296A /* Foundation.framework */; };
 		D0D37D1B5CE0856A9D0BA98E /* Pods-BDUIViewUpdateQueue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A9623CC763193362E2E7F634 /* Pods-BDUIViewUpdateQueue-dummy.m */; };
+		F383F43F1B0C7915000F7009 /* BDUIViewUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F383F43E1B0C7915000F7009 /* BDUIViewUpdateQueue.m */; };
+		F383F4401B0C7915000F7009 /* BDUIViewUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F383F43E1B0C7915000F7009 /* BDUIViewUpdateQueue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		BE3EFC0F920BA35B0B9829BA /* Pods-BDUIViewUpdateQueue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BDUIViewUpdateQueue.debug.xcconfig"; sourceTree = "<group>"; };
 		C12834DCFC70B77C65DDA4F9 /* Pods-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EA4E86886E7A6EC7644962B5 /* Pods-Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tests-environment.h"; sourceTree = "<group>"; };
+		F383F43D1B0C7915000F7009 /* BDUIViewUpdateQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDUIViewUpdateQueue.h; path = Pod/Classes/BDUIViewUpdateQueue.h; sourceTree = "<group>"; };
+		F383F43E1B0C7915000F7009 /* BDUIViewUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDUIViewUpdateQueue.m; path = Pod/Classes/BDUIViewUpdateQueue.m; sourceTree = "<group>"; };
 		F5603B462824B79C942DFDE8 /* Pods-BDUIViewUpdateQueue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BDUIViewUpdateQueue.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +94,8 @@
 		04FBAF3B910CAF01BD530F93 /* BDUIViewUpdateQueue */ = {
 			isa = PBXGroup;
 			children = (
+				F383F43D1B0C7915000F7009 /* BDUIViewUpdateQueue.h */,
+				F383F43E1B0C7915000F7009 /* BDUIViewUpdateQueue.m */,
 			);
 			name = BDUIViewUpdateQueue;
 			path = ../..;
@@ -302,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0D37D1B5CE0856A9D0BA98E /* Pods-BDUIViewUpdateQueue-dummy.m in Sources */,
+				F383F43F1B0C7915000F7009 /* BDUIViewUpdateQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				287F0259CEDC66214DD9456E /* Pods-Tests-dummy.m in Sources */,
+				F383F4401B0C7915000F7009 /* BDUIViewUpdateQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
