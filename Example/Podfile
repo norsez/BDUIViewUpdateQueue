@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'BDUIViewUpdateQueue', :exclusive => true do
+  pod "BDUIViewUpdateQueue", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "BDUIViewUpdateQueue", :path => "../"
+
+  
+end
