@@ -9,7 +9,8 @@
 
 A singleton class facilitates queuing on updating UITableView, UICollectionView, and other UIView based classes.
 
-When using UITableView or UICollectionView, asynchronous updating of your datasource and your view can be difficult without proper queuing. Naively updating the tableView or collectionView asynchronously often results in NSInternalInconsistencyException or UITableView endupdates creash. `BDUIViewUpdateQueue` helps you queue up these updates to prevent these problems.
+#Typical Uses
+When you asynchronously update your UITableView repeatedly in a short interval, you run the risk of missing the sync between your datasource and your UITableView state. This often causes crashes with `NSInternalInconsistencyException` or `endupdates EXC_BAD_ACCESS` errors. `BDUIViewUpdateQueue` helps you queue up these updates in order to avoid these problems.
 
 ## How it works
 
