@@ -40,6 +40,10 @@ self.items = @[@"Hello"];
 }];
 ```
 
+## Example project
+
+The example project demonstrates a case where the datasource and the view are updated repeatedly in a short time. Usually, this will result in a crash because the datasource is out of sync with its view. Wrapping it with a `BDUIViewUpdateQueue` call makes it all better :)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
