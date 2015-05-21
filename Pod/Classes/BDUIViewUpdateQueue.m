@@ -62,15 +62,6 @@
 
 #pragma mark - GCD wait
 
-- (dispatch_queue_t)_timer_q
-{
-  static dispatch_queue_t timer_q;
-  if  (!timer_q){
-    timer_q = dispatch_queue_create("co.bluedot.BDUIViewUpdateQueue.queue.timer_q", 0);
-  }
-  return timer_q;
-}
-
 - (NSMutableDictionary*)_timerByTimerIds
 {
   static NSMutableDictionary *timerByTimerId;
@@ -97,13 +88,16 @@
 
 - (void)_timeWaitTimer:(id)sender
 {
-  dispatch_sync([self _timer_q], ^{
-    NSTimer* timer = sender;
+  NSTimer* timer = sender;
+  dispatch_queue_t lock_q = [timer.userInfo objectForKey:KEY_LOCK_Q];
+  
+  dispatch_sync(lock_q, ^{
+
     
     NSString* timerId = [timer.userInfo objectForKey:KEY_TIMER_ID];
     void(^executeBlock)(void) = [timer.userInfo objectForKey:KEY_EXECUTE_BLOCK];
     BOOL(^tryBlock)(void) = [timer.userInfo objectForKey:KEY_WHEN_TRUE];
-    dispatch_queue_t lock_q = [timer.userInfo objectForKey:KEY_LOCK_Q];
+
     if (tryBlock()) {
       [timer invalidate];
       [[self _timerByTimerIds] removeObjectForKey:timerId];
@@ -119,7 +113,7 @@
 
 - (void)_initWaitLockQueue:(dispatch_queue_t)lock_q executeblock:(void(^)(void))executeBlock whenTrue:(BOOL(^)(void))whenTrue
 {
-  dispatch_sync([self _timer_q], ^{
+  dispatch_sync(lock_q, ^{
     [self _scheduledTimerWithId:[@([NSDate date].timeIntervalSince1970) stringValue]
                          lock_q:lock_q
                    executeBlock:executeBlock
