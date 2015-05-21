@@ -24,6 +24,7 @@
 @interface BDViewController ()
 {
   NSArray* _results;
+  NSOperationQueue *_calcQ;
 }
 @end
 
@@ -49,6 +50,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  _calcQ = [[NSOperationQueue alloc] init];
+  _calcQ.maxConcurrentOperationCount = 10;
+  _calcQ.qualityOfService = NSQualityOfServiceUtility;
   _results = @[];
   
   NSArray* ops = @[];
@@ -61,7 +65,7 @@
     ops = [ops arrayByAddingObject:op];
   }
   
-  [[NSOperationQueue mainQueue] addOperations:ops waitUntilFinished:NO];
+  [_calcQ addOperations:ops waitUntilFinished:NO];
   
 }
 
@@ -100,6 +104,11 @@
   return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [self.navigationController pushViewController:[[BDViewController alloc] initWithStyle:0] animated:YES];
+}
+
 @end
 
 
@@ -109,7 +118,8 @@
   self = [super init];
   if (self) {
     _cardinal = cardinal;
-    self.queuePriority = NSOperationQueuePriorityVeryHigh;
+    self.queuePriority = NSOperationQueuePriorityNormal;
+    self.qualityOfService = NSQualityOfServiceUtility;
   }
   return self;
 }
@@ -126,7 +136,20 @@
 
 - (void)main
 {
-  _result = (self.cardinal) * (arc4random_uniform(31.0) + 5);
+  NSArray* _doubles = @[];
+  self.result = 0;
+  
+  while (self.result < 1) {
+    for (int i=0; i < 500; i++) {
+      _doubles = [_doubles arrayByAddingObject:@(arc4random()+ 200)];
+    }
+    
+    double d = 100.0;
+    for (NSNumber* n in _doubles) {
+      d = 1.0 /(d * n.doubleValue);
+    }
+    self.result = d;
+  }
 }
 
 @end
