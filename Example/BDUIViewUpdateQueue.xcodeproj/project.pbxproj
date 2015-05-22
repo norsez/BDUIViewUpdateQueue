@@ -152,15 +152,10 @@
 				6003F59C195388D20070C39A /* BDAppDelegate.h */,
 				6003F59D195388D20070C39A /* BDAppDelegate.m */,
 				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
-				6003F5A5195388D20070C39A /* BDViewController.h */,
-				6003F5A6195388D20070C39A /* BDViewController.m */,
+				F3ED5B341B0F13F800D65460 /* example 1 */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				F39F35A71B0ED94D00567002 /* BDPhotoLoaderTableViewController.h */,
-				F39F35A81B0ED94D00567002 /* BDPhotoLoaderTableViewController.m */,
-				F39F35AA1B0ED99F00567002 /* photos.json */,
-				F39F35AC1B0EDEAC00567002 /* BDPhotoCellTableViewCell.h */,
-				F39F35AD1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m */,
+				F3ED5B351B0F140300D65460 /* example 2 */,
 			);
 			path = BDUIViewUpdateQueue;
 			sourceTree = "<group>";
@@ -203,6 +198,27 @@
 				B58FF7FFB83B85B68130FB1B /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		F3ED5B341B0F13F800D65460 /* example 1 */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* BDViewController.h */,
+				6003F5A6195388D20070C39A /* BDViewController.m */,
+			);
+			name = "example 1";
+			sourceTree = "<group>";
+		};
+		F3ED5B351B0F140300D65460 /* example 2 */ = {
+			isa = PBXGroup;
+			children = (
+				F39F35A71B0ED94D00567002 /* BDPhotoLoaderTableViewController.h */,
+				F39F35A81B0ED94D00567002 /* BDPhotoLoaderTableViewController.m */,
+				F39F35AA1B0ED99F00567002 /* photos.json */,
+				F39F35AC1B0EDEAC00567002 /* BDPhotoCellTableViewCell.h */,
+				F39F35AD1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m */,
+			);
+			name = "example 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

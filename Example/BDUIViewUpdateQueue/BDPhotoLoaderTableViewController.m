@@ -27,6 +27,9 @@
 
   
   _photos = [json valueForKeyPath:@"photoset.photo"];
+  _photos = [_photos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    return arc4random_uniform(3);
+  }];
   [[self tableView] reloadData];
   
 }
@@ -104,7 +107,7 @@
 - (void)_loadThumbmailWithRowIndex:(NSUInteger)row
 {
   NSDictionary* p = _photos [row];
-  NSString* path = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_m.jpg",
+  NSString* path = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_s.jpg",
                     [p valueForKey:@"farm"],
                     [p valueForKey:@"server"],
                     [p valueForKey:@"id"],
@@ -133,9 +136,14 @@
 - (NSAttributedString*)_attributedTextWithRowIndex:(NSUInteger)row
 {
   NSDictionary* p = _photos [row];
-  NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:[p valueForKeyPath:@"info.photo.title._content"] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:14]}];
+
+  
+  NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{}];
+  NSString* value = [p valueForKeyPath:@"info.photo.title._content"];
+  [str appendAttributedString:[[NSAttributedString alloc] initWithString:value==nil?@"":value attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:14]}]];
   [str appendAttributedString:[[NSAttributedString alloc] initWithString:@" by " attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:10]}]];
-  [str appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ \n", [p valueForKeyPath:@"info.photo.owner.username"]] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]}]];
+  value = [NSString stringWithFormat:@" %@ \n", [p valueForKeyPath:@"info.photo.owner.username"]];
+  [str appendAttributedString:[[NSAttributedString alloc] initWithString:value?value:@"" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:12]}]];
   
   NSArray* tags = [p valueForKeyPath:@"info.photo.tags.tag"];
   NSString* tagtext = @"";
@@ -154,7 +162,7 @@
     
   }
   
-  [str appendAttributedString:[[NSAttributedString alloc] initWithString:tagtext attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:8], NSParagraphStyleAttributeName: par}]];
+  [str appendAttributedString:[[NSAttributedString alloc] initWithString:tagtext?tagtext:@"" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:8], NSParagraphStyleAttributeName: par}]];
   
   //cache the NSAttributedString
   NSMutableDictionary* photo = _photos [row];
