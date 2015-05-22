@@ -17,21 +17,21 @@
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoCell" rowHeight="81" id="Ioc-Iw-ZzW" customClass="BDPhotoCellTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" tableViewCell="Ioc-Iw-ZzW" id="n0k-Z7-SE9">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="Ioc-Iw-ZzW" id="n0k-Z7-SE9">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="s7j-ha-2e6">
+                                            <rect key="frame" x="76" y="8" width="244" height="72.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S76-Yp-KVX">
                                             <rect key="frame" x="8" y="8" width="60" height="64.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="KTm-tQ-57h"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7j-ha-2e6">
-                                            <rect key="frame" x="76" y="16" width="244" height="64.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="S76-Yp-KVX" firstAttribute="top" secondItem="n0k-Z7-SE9" secondAttribute="topMargin" id="7l4-Lu-AdL"/>
@@ -40,7 +40,7 @@
                                         <constraint firstItem="S76-Yp-KVX" firstAttribute="leading" secondItem="n0k-Z7-SE9" secondAttribute="leadingMargin" id="K6b-OL-hCo"/>
                                         <constraint firstItem="s7j-ha-2e6" firstAttribute="leading" secondItem="S76-Yp-KVX" secondAttribute="trailing" constant="8" id="ZQ4-CK-Dc4"/>
                                         <constraint firstItem="s7j-ha-2e6" firstAttribute="bottom" secondItem="n0k-Z7-SE9" secondAttribute="bottomMargin" constant="8" id="doy-eQ-yNU"/>
-                                        <constraint firstItem="s7j-ha-2e6" firstAttribute="top" secondItem="n0k-Z7-SE9" secondAttribute="topMargin" constant="8" id="sNm-6W-889"/>
+                                        <constraint firstItem="s7j-ha-2e6" firstAttribute="top" secondItem="n0k-Z7-SE9" secondAttribute="topMargin" id="sNm-6W-889"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
