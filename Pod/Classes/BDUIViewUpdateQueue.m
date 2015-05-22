@@ -28,7 +28,7 @@
 {
   dispatch_queue_t q = [_queuesByUIView objectForKey:@(lockView.hash)];
   if  (!q){
-    NSString * name = [NSString stringWithFormat:@"co.bluedot.BDUIViewUpdateQueue.queue.updateUIView.%@", lockView.description];
+    NSString * name = [NSString stringWithFormat:@"th.co.bluedot.BDUIViewUpdateQueue.queue.updateUIView.%@", lockView.description];
     q = dispatch_queue_create([name cStringUsingEncoding:NSUTF8StringEncoding], 0);
     [_queuesByUIView setObject:q forKey:@(lockView.hash)];
   }

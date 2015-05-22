@@ -23,6 +23,9 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		9AE458621140467FC1DD818C /* libPods-BDUIViewUpdateQueue.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D69E6AEE2BE779F0EBC13C /* libPods-BDUIViewUpdateQueue.a */; };
+		F39F35A91B0ED94D00567002 /* BDPhotoLoaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F35A81B0ED94D00567002 /* BDPhotoLoaderTableViewController.m */; };
+		F39F35AB1B0ED99F00567002 /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = F39F35AA1B0ED99F00567002 /* photos.json */; };
+		F39F35AE1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F39F35AD1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,11 @@
 		B58FF7FFB83B85B68130FB1B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D813390E429D13E78B80D0A2 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6593FC2A56E970B1A697CD /* Pods-BDUIViewUpdateQueue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDUIViewUpdateQueue.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BDUIViewUpdateQueue/Pods-BDUIViewUpdateQueue.debug.xcconfig"; sourceTree = "<group>"; };
+		F39F35A71B0ED94D00567002 /* BDPhotoLoaderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDPhotoLoaderTableViewController.h; sourceTree = "<group>"; };
+		F39F35A81B0ED94D00567002 /* BDPhotoLoaderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDPhotoLoaderTableViewController.m; sourceTree = "<group>"; };
+		F39F35AA1B0ED99F00567002 /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos.json; sourceTree = "<group>"; };
+		F39F35AC1B0EDEAC00567002 /* BDPhotoCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDPhotoCellTableViewCell.h; sourceTree = "<group>"; };
+		F39F35AD1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDPhotoCellTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +156,11 @@
 				6003F5A6195388D20070C39A /* BDViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				F39F35A71B0ED94D00567002 /* BDPhotoLoaderTableViewController.h */,
+				F39F35A81B0ED94D00567002 /* BDPhotoLoaderTableViewController.m */,
+				F39F35AA1B0ED99F00567002 /* photos.json */,
+				F39F35AC1B0EDEAC00567002 /* BDPhotoCellTableViewCell.h */,
+				F39F35AD1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m */,
 			);
 			path = BDUIViewUpdateQueue;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39F35AB1B0ED99F00567002 /* photos.json in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -358,6 +372,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* BDAppDelegate.m in Sources */,
+				F39F35A91B0ED94D00567002 /* BDPhotoLoaderTableViewController.m in Sources */,
+				F39F35AE1B0EDEAC00567002 /* BDPhotoCellTableViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* BDViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
