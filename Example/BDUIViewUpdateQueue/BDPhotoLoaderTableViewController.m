@@ -86,24 +86,30 @@
 - (void)_loadThumbmailWithRowIndex:(NSUInteger)row
 {
   
-  [[BDUIViewUpdateQueue shared] updateView:self.tableView block:^{
-    
-    NSDictionary* p = _photos [row];
-    NSString* path = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_t.jpg",
-                      [p valueForKey:@"farm"],
-                      [p valueForKey:@"server"],
-                      [p valueForKey:@"id"],
-                      [p valueForKey:@"secret"]
-                      ];
-    NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:path]];
-    UIImage* img = [[UIImage alloc] initWithData:data];
-    
-    NSMutableDictionary* photo = [_photos objectAtIndex:row];
-    [photo setObject:img forKey:@"thumbnailImage"];
-    
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
+  NSDictionary* p = _photos [row];
+  NSString* path = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_s.jpg",
+                    [p valueForKey:@"farm"],
+                    [p valueForKey:@"server"],
+                    [p valueForKey:@"id"],
+                    [p valueForKey:@"secret"]
+                    ];
+  
+  
+  NSURLSessionDownloadTask *dtsk = [[NSURLSession sharedSession] downloadTaskWithURL:[NSURL URLWithString:path] completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+    if (!error) {
+      UIImage *image = [UIImage imageWithData:
+                        [NSData dataWithContentsOfURL:location]];
+      [[BDUIViewUpdateQueue shared] updateView:self.tableView block:^{
+        NSMutableDictionary* photo = [_photos objectAtIndex:row];
+        [photo setObject:image forKey:@"thumbnailImage"];
+        
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+      }];
+    }
   }];
+  
+  [dtsk resume];
 }
 
 - (void)_didReceiveThumbnail:(NSURL*)location rowIndex:(NSUInteger)row
