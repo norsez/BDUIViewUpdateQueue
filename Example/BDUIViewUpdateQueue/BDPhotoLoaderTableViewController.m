@@ -85,7 +85,7 @@
   NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
   
   NSDictionary* p = _photos [row];
-  NSString* path = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=f54215c654a239c02b8e4004e10c80fa&photo_id=%@&format=json&nojsoncallback=1",
+  NSString* path = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=76199c983758d33e86c1c86f3838e148&photo_id=%@&format=json&nojsoncallback=1",
                     [p valueForKey:@"id"]
                     ];
 
