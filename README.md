@@ -45,7 +45,16 @@ self.items = @[@"Hello"];
 
 ## Example project
 
-The example project demonstrates a case where the datasource and the view are updated repeatedly in a short time. Usually, this will result in a crash because the datasource is out of sync with its view. Wrapping it with a `BDUIViewUpdateQueue` call makes it all better :)
+The example probably deserves some explanation:
+
+[![Capture 2](http://img.youtube.com/vi/2x3CgaQu5jg/0.jpg)](http://www.youtube.com/watch?v=2x3CgaQu5jg)
+
+The example app, as seen in the video above, is a typcial case of using `UITableView` to display data rows. First, rows are loaded with some placeholder text. The thumbnail is then downloaded asynchronously. More JSON info is also downloaded asynchronously. The results get populated back into each row and the row gets reloaded by the `UITableView`.
+
+[![Capture 1](http://img.youtube.com/vi/tA1MIbyYa3I/0.jpg)](http://www.youtube.com/watch?v=tA1MIbyYa3I)
+
+In NSLog printout, you'll see how the row gets updated asynchronously. If you comment out all calls to BDUIViewUpdateQueue and rerun the app, you'll see how this app works without properly syncing, which is not pretty. 
+
 
 ## Usage
 
