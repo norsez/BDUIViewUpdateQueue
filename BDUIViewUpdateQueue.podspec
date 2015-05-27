@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BDUIViewUpdateQueue"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A class helps queuing asynchronous updates of UITableView (or UICollectionView)."
   s.description      = <<-DESC
                       When using UITableView or UICollectionView, asynchronous updating of your datasource and your view can be difficult without proper queuing. Sometimes upating these views can even crash your app (NSInternalInconsistencyException dreads). 
