@@ -91,9 +91,7 @@
   NSTimer* timer = sender;
   dispatch_queue_t lock_q = [timer.userInfo objectForKey:KEY_LOCK_Q];
   
-  dispatch_sync(lock_q, ^{
-
-    
+   
     NSString* timerId = [timer.userInfo objectForKey:KEY_TIMER_ID];
     void(^executeBlock)(void) = [timer.userInfo objectForKey:KEY_EXECUTE_BLOCK];
     BOOL(^tryBlock)(void) = [timer.userInfo objectForKey:KEY_WHEN_TRUE];
@@ -107,8 +105,6 @@
         });
       });
     }
-    
-  });
 }
 
 - (void)_initWaitLockQueue:(dispatch_queue_t)lock_q executeblock:(void(^)(void))executeBlock whenTrue:(BOOL(^)(void))whenTrue

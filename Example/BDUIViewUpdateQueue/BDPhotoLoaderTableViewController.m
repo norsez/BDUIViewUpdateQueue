@@ -114,7 +114,6 @@
                     [p valueForKey:@"secret"]
                     ];
   
-  
   NSURLSessionDownloadTask *dtsk = [[NSURLSession sharedSession] downloadTaskWithURL:[NSURL URLWithString:path] completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
     if (!error) {
       UIImage *image = [UIImage imageWithData:
