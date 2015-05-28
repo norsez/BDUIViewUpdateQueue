@@ -9,6 +9,8 @@
 
 A singleton class facilitates queuing on updating UITableView, UICollectionView, and other UIView based classes.
 
+This is an open-source-library-slash-`UITableView/UICollectionView` tutorial on updating the view asynchronously.
+
 ## Typical Uses
 UITableView (and UICollectionView) expects you to have all your data ready for populating your cells before drawing them on the view. In this case, when you insert, delete, `-batchUpdate…`, or `-reloadData`, your datasource state is synced up with your view state. Everything is great.
 
@@ -42,6 +44,29 @@ self.items = @[@"Hello"];
 [self.tableView insertIndexPaths@[[NSIndexPath indexPathWithRow:0 section:0 withRowAnimation:UITableViewRowAnimationBottom]];
 }];
 ```
+
+###Pitfalls
+
+- **Updating based on `NSIndexPath`** is risky. A common pattern for upating `UITableView` like the above example is actually a pitfall especially when the your datasource items can be rearranged by another thread or changed entirely. Therefore, it's safer to update by re-finding the corresponding `NSIndexPath` before the view update, somehow. For example:
+
+```
+Person *john = [_items objectAtIndex:indexPath.row];
+[[BDUIViewUpdateQueue shared] updateView:self.tableView block:^{
+
+//do some work
+
+//[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:0]; //Using an indexPath from outside this block is risky. let's not do this.
+
+//do this instead.
+NSUInteger indexToUpdate = [_items indexOfObject:john];
+if	(indexToUpdate != NSNotFound){
+[self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexToUpdate section:0]] withRowAnimation:0];
+}
+}];
+```
+
+
+- **Limit on animation items** `UICollectionView`, in particular, will throw an `endAnimation` exception even when you serially queue your update nicely if you call insert/delete/update items faster than its limit (31 animations). 
 
 ## Example project
 
