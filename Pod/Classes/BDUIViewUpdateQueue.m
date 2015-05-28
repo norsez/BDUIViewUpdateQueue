@@ -29,23 +29,23 @@
   dispatch_queue_t q = [_queuesByUIView objectForKey:@(lockView.hash)];
   if  (!q){
     NSString * name = [NSString stringWithFormat:@"th.co.bluedot.BDUIViewUpdateQueue.queue.updateUIView.%@", lockView.description];
-    q = dispatch_queue_create([name cStringUsingEncoding:NSUTF8StringEncoding], 0);
+    q = dispatch_queue_create([name cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL);
     [_queuesByUIView setObject:q forKey:@(lockView.hash)];
   }
   
   return q;
 }
 
-- (void)updateView:(UIView *)UIView block:(void (^)(void))updateBlock delay:(NSTimeInterval)delayInSeconds
+- (void)updateView:(UIView *)view block:(void (^)(void))updateBlock delay:(NSTimeInterval)delayInSeconds
 {
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-    [self updateView:UIView block:updateBlock];
+    [self updateView:view block:updateBlock];
   });
 }
 
-- (void)updateView:(UIView *)UIView block:(void (^)(void))updateBlock
+- (void)updateView:(UIView *)view block:(void (^)(void))updateBlock
 {
-  dispatch_sync([self _q_forView:UIView], ^{
+  dispatch_sync([self _q_forView:view], ^{
     dispatch_async(dispatch_get_main_queue(), ^{
       updateBlock();
     });
@@ -53,11 +53,11 @@
 }
 
 
-- (void)updateView:(UIView *)UIView block:(void (^)(void))updateBlock waitUntil:(BOOL (^)(void))waitUntilTrueBlock
+- (void)updateView:(UIView *)view block:(void (^)(void))updateBlock waitUntil:(BOOL (^)(void))waitUntilTrueBlock
 {
   NSAssert(updateBlock!=nil, @"updateBlock can't be nil");
   NSAssert(waitUntilTrueBlock!=nil, @"waitUntilTrueblock can't be nil");
-  [self _initWaitLockQueue:[self _q_forView:UIView] executeblock:updateBlock whenTrue:waitUntilTrueBlock];
+  [self _initWaitLockQueue:[self _q_forView:view] executeblock:updateBlock whenTrue:waitUntilTrueBlock];
 }
 
 #pragma mark - GCD wait
