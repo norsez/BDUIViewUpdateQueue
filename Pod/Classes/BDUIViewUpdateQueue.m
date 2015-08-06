@@ -30,6 +30,7 @@
   if  (!q){
     NSString * name = [NSString stringWithFormat:@"th.co.bluedot.BDUIViewUpdateQueue.queue.updateUIView.%@", lockView.description];
     q = dispatch_queue_create([name cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL);
+    dispatch_set_target_queue(q, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
     [_queuesByUIView setObject:q forKey:@(lockView.hash)];
   }
   
@@ -91,20 +92,20 @@
   NSTimer* timer = sender;
   dispatch_queue_t lock_q = [timer.userInfo objectForKey:KEY_LOCK_Q];
   
-   
-    NSString* timerId = [timer.userInfo objectForKey:KEY_TIMER_ID];
-    void(^executeBlock)(void) = [timer.userInfo objectForKey:KEY_EXECUTE_BLOCK];
-    BOOL(^tryBlock)(void) = [timer.userInfo objectForKey:KEY_WHEN_TRUE];
-
-    if (tryBlock()) {
-      [timer invalidate];
-      [[self _timerByTimerIds] removeObjectForKey:timerId];
-      dispatch_sync(lock_q, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-          executeBlock();
-        });
+  
+  NSString* timerId = [timer.userInfo objectForKey:KEY_TIMER_ID];
+  void(^executeBlock)(void) = [timer.userInfo objectForKey:KEY_EXECUTE_BLOCK];
+  BOOL(^tryBlock)(void) = [timer.userInfo objectForKey:KEY_WHEN_TRUE];
+  
+  if (tryBlock()) {
+    [timer invalidate];
+    [[self _timerByTimerIds] removeObjectForKey:timerId];
+    dispatch_sync(lock_q, ^{
+      dispatch_async(dispatch_get_main_queue(), ^{
+        executeBlock();
       });
-    }
+    });
+  }
 }
 
 - (void)_initWaitLockQueue:(dispatch_queue_t)lock_q executeblock:(void(^)(void))executeBlock whenTrue:(BOOL(^)(void))whenTrue
